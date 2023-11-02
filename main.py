@@ -1,5 +1,6 @@
 from sklearn.datasets import load_iris
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 class Iris:
@@ -31,6 +32,49 @@ def k_nearest_neighbors(X_train, y_train, x_test, k):
     return prediction
 
 
+def plot_projection(data, title):
+    plt.figure(figsize=(12, 6))
+
+    plt.subplot(2, 3, 1)
+    plt.scatter(data[:, 0], data[:, 1], c=y)
+    plt.xlabel('sepal length (cm)')
+    plt.ylabel('sepal width (cm)')
+    plt.title('Проекция на оси до нормализации')
+
+    plt.subplot(2, 3, 2)
+    plt.scatter(data[:, 0], data[:, 2], c=y)
+    plt.xlabel('sepal length (cm)')
+    plt.ylabel('petal length (cm)')
+    plt.title('Проекция на оси до нормализации')
+
+    plt.subplot(2, 3, 3)
+    plt.scatter(data[:, 0], data[:, 3], c=y)
+    plt.xlabel('sepal length (cm)')
+    plt.ylabel('petal width (cm)')
+    plt.title('Проекция на оси до нормализации')
+
+    plt.subplot(2, 3, 4)
+    plt.scatter(data[:, 1], data[:, 2], c=y)
+    plt.xlabel('sepal width (cm)')
+    plt.ylabel('petal length (cm)')
+    plt.title('Проекция на оси до нормализации')
+
+    plt.subplot(2, 3, 5)
+    plt.scatter(data[:, 1], data[:, 3], c=y)
+    plt.xlabel('sepal width (cm)')
+    plt.ylabel('petal width (cm)')
+    plt.title('Проекция на оси до нормализации')
+
+    plt.subplot(2, 3, 6)
+    plt.scatter(data[:, 2], data[:, 3], c=y)
+    plt.xlabel('petal length (cm)')
+    plt.ylabel('petal width (cm)')
+    plt.title('Проекция на оси до нормализации')
+
+    plt.tight_layout()
+    plt.show()
+
+
 if __name__ == '__main__':
     iris = load_iris()
     X = iris.data
@@ -60,3 +104,5 @@ if __name__ == '__main__':
     y_test = [y[i] for i in indices[num_train_samples:]]
 
     optimal_k = np.sqrt(len(X))
+
+    plot_projection(X, 'Ирисы до нормализации')
