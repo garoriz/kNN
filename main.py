@@ -32,7 +32,7 @@ def k_nearest_neighbors(X_train, y_train, x_test, k):
     return prediction
 
 
-def plot_projection(data, title):
+def plot_projection(data):
     plt.figure(figsize=(12, 6))
 
     plt.subplot(2, 3, 1)
@@ -74,6 +74,45 @@ def plot_projection(data, title):
     plt.tight_layout()
     plt.show()
 
+    plt.subplot(2, 3, 1)
+    plt.scatter(X_normalized[:, 0], X_normalized[:, 1], c=y)
+    plt.xlabel('sepal length (cm)')
+    plt.ylabel('sepal width (cm)')
+    plt.title('Проекция на оси после нормализации')
+
+    plt.subplot(2, 3, 2)
+    plt.scatter(X_normalized[:, 0], X_normalized[:, 2], c=y)
+    plt.xlabel('sepal length (cm)')
+    plt.ylabel('petal length (cm)')
+    plt.title('Проекция на оси после нормализации')
+
+    plt.subplot(2, 3, 3)
+    plt.scatter(X_normalized[:, 0], X_normalized[:, 3], c=y)
+    plt.xlabel('sepal length (cm)')
+    plt.ylabel('petal width (cm)')
+    plt.title('Проекция на оси после нормализации')
+
+    plt.subplot(2, 3, 4)
+    plt.scatter(X_normalized[:, 1], X_normalized[:, 2], c=y)
+    plt.xlabel('sepal width (cm)')
+    plt.ylabel('petal length (cm)')
+    plt.title('Проекция на оси после нормализации')
+
+    plt.subplot(2, 3, 5)
+    plt.scatter(X_normalized[:, 1], X_normalized[:, 3], c=y)
+    plt.xlabel('sepal width (cm)')
+    plt.ylabel('petal width (cm)')
+    plt.title('Проекция на оси после нормализации')
+
+    plt.subplot(2, 3, 6)
+    plt.scatter(X_normalized[:, 2], X_normalized[:, 3], c=y)
+    plt.xlabel('petal length (cm)')
+    plt.ylabel('petal width (cm)')
+    plt.title('Проекция на оси после нормализации')
+
+    plt.tight_layout()
+    plt.show()
+
 
 if __name__ == '__main__':
     iris = load_iris()
@@ -105,4 +144,4 @@ if __name__ == '__main__':
 
     optimal_k = np.sqrt(len(X))
 
-    plot_projection(X, 'Ирисы до нормализации')
+    plot_projection(X)
