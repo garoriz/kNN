@@ -1,6 +1,7 @@
 from sklearn.datasets import load_iris
 import numpy as np
 import matplotlib.pyplot as plt
+import random
 
 
 class Iris:
@@ -114,6 +115,15 @@ def plot_projection(data):
     plt.show()
 
 
+def input_new_object():
+    input_data = [float(input("Введите длину чашелистика: ")),
+                  float(input("Введите ширину чашелистика: ")),
+                  float(input("Введите длину лепестка: ")),
+                  float(input("Введите ширину лепестка: "))]
+
+
+
+
 if __name__ == '__main__':
     iris = load_iris()
     X = iris.data
@@ -123,8 +133,6 @@ if __name__ == '__main__':
     std = np.std(X, axis=0)
 
     X_normalized = (X - mean) / std
-
-    import random
 
     train_ratio = 0.8
 
@@ -145,3 +153,5 @@ if __name__ == '__main__':
     optimal_k = np.sqrt(len(X))
 
     plot_projection(X)
+
+    input_new_object()
