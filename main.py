@@ -4,20 +4,6 @@ import matplotlib.pyplot as plt
 import random
 
 
-class Iris:
-    sepal_length = 0
-    sepal_width = 0
-    petal_length = 0
-    petal_width = 0
-    class_name = ""
-
-    def __init__(self, sepal_length, sepal_width, petal_length, petal_width):
-        self.sepal_length = sepal_length
-        self.sepal_width = sepal_width
-        self.petal_length = petal_length
-        self.petal_width = petal_width
-
-
 def euclidean_distance(x1, x2):
     return np.sqrt(np.sum((x1 - x2) ** 2))
 
@@ -121,7 +107,15 @@ def input_new_object():
                   float(input("Введите длину лепестка: ")),
                   float(input("Введите ширину лепестка: "))]
 
+    input_data_normalized = normalize_new_object(input_data)
 
+    predicted_class = k_nearest_neighbors(X_train, y_train, input_data_normalized, optimal_k)
+    print(f"Предсказанный класс: {iris.target_names[predicted_class]}")
+
+
+def normalize_new_object(new_object):
+    new_object_normalized = (new_object - mean) / std
+    return new_object_normalized
 
 
 if __name__ == '__main__':
@@ -134,7 +128,7 @@ if __name__ == '__main__':
 
     X_normalized = (X - mean) / std
 
-    train_ratio = 0.8
+    train_ratio = 0.1
 
     num_samples = len(X)
 
@@ -150,7 +144,7 @@ if __name__ == '__main__':
     X_test = [X[i] for i in indices[num_train_samples:]]
     y_test = [y[i] for i in indices[num_train_samples:]]
 
-    optimal_k = np.sqrt(len(X))
+    optimal_k = round(np.sqrt(num_train_samples))
 
     plot_projection(X)
 
